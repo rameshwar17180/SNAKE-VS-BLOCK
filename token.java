@@ -180,6 +180,14 @@ class magnet extends token {
 class shield extends token{
 	ArrayList <Circle> as=new ArrayList<Circle>();
         boolean bl;
+	public static void mergeSortIterative(int[] arr) {
+        int n = arr.length;
+        for (int size = 1; size < n; size *= 2) {
+            for (int lo = 0; lo < n - size; lo += 2 * size) {
+                merge(lo, Math.min(lo + size + size - 1, n - 1), lo + size - 1, arr);
+            }
+        }
+    }
 	shield(){
 		this.x=1000;
 		this.y=0;
@@ -219,7 +227,7 @@ class shield extends token{
                             canvas.getChildren().removeAll(as);
                          //   timeline.pause();
                         }
-		    	//Bounds bounds = canvas.getBoundsInLocal();
+		    	Bounds bounds = canvas.getBoundsInLocal();
 		    	if(c1.getLayoutY()>1000) {
 		    		canvas.getChildren().removeAll(as);
                             h.select(h);
@@ -253,15 +261,15 @@ class Destroyblocks extends token{
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20), 
 		        new EventHandler<ActionEvent>() {
 		        
-			//double dx = 7; //Step on x or velocity
+			double dx = 7; //Step on x or velocity
 			double dy = 3;
 			double dx = 3;
-		        //Step on y
+		       Step on y
 			Random r=new Random();
 		    @Override
 		    public void handle(ActionEvent t) {
 		    	//move the ball
-		    //	ball.setLayoutX(ball.getLayoutX() + dx);
+		    	ball.setLayoutX(ball.getLayoutX() + dx);
 		       Random r9=new Random();
 		    	c1.setLayoutY(c1.getLayoutY() + dy);
                         if(collision(sn)==true){
@@ -271,7 +279,7 @@ class Destroyblocks extends token{
                          //   timeline.pause();
                         }
 		    	//Bounds bounds = canvas.getBoundsInLocal();
-		    	if(c1.getLayoutY()>1000) {
+		    	if(c1.getLayoutY()>1005) {
 		    		canvas.getChildren().removeAll(as);
                             h.select(h);
 		    	}
@@ -285,7 +293,7 @@ class Destroyblocks extends token{
                         
 	}
 }
-/*class magnet extends token{
+class magnet extends token{
 	magnet(){
 		super();
 		this.x=50;
@@ -298,4 +306,4 @@ class magnet extends token{
 		this.x=50;
 		this.y=20;
 	}
-}*/
+}
